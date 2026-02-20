@@ -1,0 +1,6 @@
+module Pods_StampScannerApp_StampScannerAppTests {
+  umbrella header "Pods-StampScannerApp-StampScannerAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
