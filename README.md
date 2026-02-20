@@ -21,6 +21,26 @@ A production-ready React Native iOS-focused app for automating stamp photography
 - React Native Reanimated (v3)
 - Axios & AsyncStorage
 
+## Troubleshooting Boost Checksum Error
+
+If you encounter a `Verification checksum was incorrect` error for `boost` during `pod install`, run the following commands to clear your CocoaPods cache and retry:
+
+```bash
+# 1. Clear CocoaPods cache for boost
+pod cache clean boost
+
+# 2. Alternatively, clear all CocoaPods caches (more thorough)
+rm -rf ~/Library/Caches/CocoaPods
+rm -rf ios/Pods
+rm -rf ios/Podfile.lock
+
+# 3. Clean Xcode's derived data
+rm -rf ~/Library/Developer/Xcode/DerivedData/*
+
+# 4. Retry pod install
+cd ios && pod install
+```
+
 ## Installation
 
 1. **Clone and Install Dependencies**:

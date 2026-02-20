@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '13.4'
 prepare_react_native_project!
 
-target 'StampScanner' do
+target 'StampScannerApp' do
   config = use_native_modules!
 
   use_react_native!(
@@ -13,7 +13,7 @@ target 'StampScanner' do
     :hermes_enabled => true
   )
 
-  target 'StampScannerTests' do
+  target 'StampScannerAppTests' do
     inherit! :complete
     # Pods for testing
   end
