@@ -41,6 +41,19 @@ rm -rf ~/Library/Developer/Xcode/DerivedData/*
 cd ios && pod install
 ```
 
+## Troubleshooting Android Build Error (SDK 35 / AGP 8.6)
+
+If you encounter a build error regarding `androidx.core:core-ktx:1.16.0` requiring API 35:
+1. The project is already configured to use **SDK 35** and **AGP 8.6.0**.
+2. Ensure you have the Android SDK 35 installed via Android Studio SDK Manager.
+3. Clean the build:
+   ```bash
+   cd android
+   ./gradlew clean
+   cd ..
+   npm run android
+   ```
+
 ## Installation
 
 1. **Clone and Install Dependencies**:
