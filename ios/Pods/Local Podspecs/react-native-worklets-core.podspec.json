@@ -1,6 +1,6 @@
 {
   "name": "react-native-worklets-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "summary": "test",
   "homepage": "https://github.com/chrfalch/react-native-worklets-core#readme",
   "license": "MIT",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/chrfalch/react-native-worklets-core.git",
-    "tag": "0.2.0"
+    "tag": "0.2.1"
   },
   "source_files": [
     "ios/**/*.{h,m,mm}",
