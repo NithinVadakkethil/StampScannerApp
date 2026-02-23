@@ -94,25 +94,53 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
         }
     }, [detectionStatus]);
 
+    // const takePhoto = useCallback(async () => {
+    //     if (isCapturing || !camera.current) return;
+
+    //     try {
+    //         setIsCapturing(true);
+    //         const photo = await camera.current.takePhoto({
+    //             qualityPrioritization: 'quality',
+    //             flash: 'auto',
+    //             enableShutterSound: true,
+    //         });
+
+    //         handlePhotoCaptured(photo);
+    //     } catch (e) {
+    //         console.error('Failed to take photo', e);
+    //         Alert.alert('Error', 'Failed to take photo');
+    //     } finally {
+    //         setIsCapturing(false);
+    //     }
+    // }, [camera, isCapturing]);
+
     const takePhoto = useCallback(async () => {
-        if (isCapturing || !camera.current) return;
-
-        try {
-            setIsCapturing(true);
-            const photo = await camera.current.takePhoto({
-                qualityPrioritization: 'quality',
-                flash: 'auto',
-                enableShutterSound: true,
-            });
-
-            handlePhotoCaptured(photo);
-        } catch (e) {
-            console.error('Failed to take photo', e);
-            Alert.alert('Error', 'Failed to take photo');
-        } finally {
-            setIsCapturing(false);
+        if (isCapturing) return;
+        if (!camera.current) {
+          console.log('Camera ref is null');
+          return;
         }
-    }, [camera, isCapturing]);
+      
+        try {
+          setIsCapturing(true);
+      
+          const photo = await camera.current.takePhoto({
+            qualityPrioritization: 'balanced', // change from 'quality'
+            flash: 'off', // temporarily disable flash
+            enableShutterSound: false,
+          });
+      
+          console.log('Photo path:', photo.path);
+      
+          handlePhotoCaptured(photo);
+      
+        } catch (error) {
+          console.error('Take photo error:', error);
+          Alert.alert('Error', 'Failed to capture photo');
+        } finally {
+          setIsCapturing(false);
+        }
+      }, [isCapturing]);
 
     // Auto-capture logic when stable
     useEffect(() => {
@@ -133,6 +161,7 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
 
     const handlePhotoCaptured = (photo: PhotoFile) => {
         const photoPath = `file://${photo.path}`;
+        console.log(photo)
 
         if (!isBackCapture) {
             // Finished front capture, ask about back

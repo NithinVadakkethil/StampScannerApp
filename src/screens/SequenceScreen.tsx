@@ -43,7 +43,6 @@ const SequenceScreen: React.FC<Props> = ({ navigation }) => {
         }
         // Save preference
         StorageService.setLastSequence(sequenceNumber);
-
         navigation.navigate('Camera', { sequenceNumber });
     };
 
